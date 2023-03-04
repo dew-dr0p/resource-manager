@@ -1,20 +1,27 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue'
+import FooterBar from './components/FooterBar.vue';
 </script>
 
 <template>
   <header>
-    <nav>
+    <Nav class="mx-10 my-5 font-bold justify-center flex">
       <NavBar />
-    </nav>
+    </Nav>
   </header>
 
-  <RouterView />
+  <RouterView class="view" />
+
+  <footer>
+    <FooterBar />
+  </footer>
 </template>
 
 <style scoped>
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants; */
+.view {
+  margin: auto;
+  margin-top: 4rem;
+  padding: 0 2rem;
+  width: max-content;
+}
 </style>
