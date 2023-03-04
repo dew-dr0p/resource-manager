@@ -1,14 +1,33 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 const props = defineProps<{
     title: string,
     text: string,
     type: string,
 }>()
+
+const value = ref('')
+
+const emit = defineEmits<{
+    (e: 'Input', value: string): void
+}>()
+
 </script>
 
 <template>
-    <div>
+    <div class="mb-5">
         <h5 class="mb-2">{{props.title}}</h5>
-        <input :type="props.type" :placeholder="props.text" class="border rounded-xl w-full border-gray-300 p-3 mb-5">
+        <input 
+            @input="emit('Input', value)" 
+            :type="props.type" 
+            :placeholder="props.text" 
+            v-model="value" 
+            class="border rounded-xl w-full border-gray-300 p-3 
+            focus-visible:ring-1 
+            focus-visible:ring-gray-300 
+            focus-visible:border-gray-300"
+        >
+        <!-- <p>{{ name }}</p> -->
     </div>
 </template>
