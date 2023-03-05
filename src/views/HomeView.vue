@@ -3,30 +3,67 @@ import PageTitle from '@/components/PageTitle.vue';
 import FormInput from '@/components/FormInput.vue';
 import FormCheckbox from '@/components/FormCheckbox.vue';
 import FormButton from '@/components/FormButton.vue';
+import ErrorIcon from '@/components/icons/ErrorIcon.vue'
+import axios from 'axios'
+import type { Ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
-import { required } from '@vuelidate/validators'
-import { reactive } from 'vue';
+import { required, email } from '@vuelidate/validators'
+import { reactive, ref, computed } from 'vue';
 
 const details = reactive({
-  username: '',
+  email: '',
   password: '',
 })
 
-const rules = {
-  username: {required},
-  password: {required},
-}
+let emailError: String | Ref<String>
+let passwordError: String | Ref<String>
+
+let error = ref('')
+// const passwordError = ref('')
+
+const rules = computed(() => {
+  return {
+    email: { required, email },
+    password: { required },
+  }
+})
 
 const v$ = useVuelidate(rules, details)
 
-function updateEmail(n: string, ) {
-  details.username = n
-  console.log(v$.value)
+function updateEmail(n: string,) {
+  details.email = n
 }
 
-function updatePassword(n: string, ) {
+function updatePassword(n: string,) {
   details.password = n
-  console.log(v$.value.username.$error)
+}
+
+async function submit() {
+  v$.value.$validate()
+  if (v$.value.email.$error) {
+    emailError = v$.value.email.$errors[0].$message
+  }
+  if (v$.value.password.$error) {
+    passwordError = v$.value.password.$errors[0].$message
+  }
+  console.log(v$.value)
+  try {
+    const { data } = await axios.post(
+      'https://hci-proj.onrender.com/api/v1/login/',
+      {
+        'email': details.email,
+        'password': details.password,
+      }
+    )
+    return data
+  } catch (err: any) {
+    console.log(err.response)
+    error.value = err.response.data
+  } finally {
+    details.email = '',
+    details.password = ''
+  }
+
 }
 
 </script>
@@ -34,11 +71,12 @@ function updatePassword(n: string, ) {
 <template>
   <div class="text-[#667085]">
     <PageTitle />
-    <form action="">
-      <FormInput title="Username" text="Enter your username" type="text" @Input="updateEmail"/>
-      <p>{{ details.username }}</p>
-      <FormInput title="Password" text="Enter your password" type="password" @Input="updatePassword"/>
-      <p>{{ details.password }}</p>
+    <form action="" @submit.prevent="submit">
+      <FormInput title="Email" text="Enter your email" type="text" @Input="updateEmail" :error="emailError"
+        :value="details.email" />
+      <FormInput title="Password" text="Enter your password" type="password" @Input="updatePassword" :error="passwordError"
+        :value="details.password" />
+      <p v-if="error" class="text-[#FF3B3B] pb-2"><span v-html="ErrorIcon"></span>{{ error }}</p>
       <FormCheckbox />
       <FormButton />
     </form>
