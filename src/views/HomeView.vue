@@ -76,7 +76,7 @@ async function submit() {
         :value="details.email" />
       <FormInput title="Password" text="Enter your password" type="password" @Input="updatePassword" :error="passwordError"
         :value="details.password" />
-      <p v-if="error" class="text-[#FF3B3B] pb-2"><span v-html="ErrorIcon"></span>{{ error }}</p>
+      <p v-if="error" class="text-[#FF3B3B] pb-2"><i v-html="ErrorIcon"></i>{{ error }}</p>
       <FormCheckbox />
       <FormButton />
     </form>
