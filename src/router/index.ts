@@ -21,11 +21,11 @@ const router = createRouter({
       name: 'register student',
       component: RegisterStudent
     },
-    {
-      path: '/accounts/:user/',
-      name: 'register student',
-      component: RegisterStudent
-    },
+    // {
+    //   path: '/accounts/:user/',
+    //   name: 'register student',
+    //   component: RegisterStudent
+    // },
     // {
     //   path: '/about',
     //   name: 'about',
