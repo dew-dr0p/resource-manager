@@ -19,7 +19,6 @@ let emailError: String | Ref<String>
 let passwordError: String | Ref<String>
 
 let error = ref('')
-// const passwordError = ref('')
 
 const rules = computed(() => {
   return {
@@ -39,6 +38,7 @@ function updatePassword(n: string,) {
 }
 
 function submit() {
+  error.value = ''
   v$.value.$validate()
   if (v$.value.email.$error) {
     emailError = v$.value.email.$errors[0].$message
@@ -58,8 +58,8 @@ function submit() {
     console.log(err.response)
     error.value = err.response.data
     })
-    .then((res) => {
-      console.log(res)
+    .then((res: any) => {
+      console.log(res.data.dat)
       details.email = '',
       details.password = ''
     })
