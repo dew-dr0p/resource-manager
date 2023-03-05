@@ -12,7 +12,7 @@ import FooterBar from './components/FooterBar.vue';
 
   <RouterView class="view" />
 
-  <footer>
+  <footer class="mt-12">
     <FooterBar />
   </footer>
 </template>
@@ -20,7 +20,7 @@ import FooterBar from './components/FooterBar.vue';
 <style scoped>
 .view {
   margin: auto;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   /* margin-top: auto;
   margin-bottom: auto; */
   padding: 0 2rem;

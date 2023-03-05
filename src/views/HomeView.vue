@@ -61,7 +61,7 @@ async function submit() {
     error.value = err.response.data
   } finally {
     details.email = '',
-    details.password = ''
+      details.password = ''
   }
 
 }
@@ -70,15 +70,17 @@ async function submit() {
 
 <template>
   <div class="text-[#667085]">
-    <PageTitle />
+    <PageTitle title="Log into your account" subtitle="Welcome back! Please enter your details" />
     <form action="" @submit.prevent="submit">
-      <FormInput title="Email" text="Enter your email" type="text" @Input="updateEmail" :error="emailError"
+      <FormInput title="Email" text="Enter your email" type="email" @Input="updateEmail" :error="emailError"
         :value="details.email" />
-      <FormInput title="Password" text="Enter your password" type="password" @Input="updatePassword" :error="passwordError"
-        :value="details.password" />
-      <p v-if="error" class="text-[#FF3B3B] pb-2"><i v-html="ErrorIcon"></i>{{ error }}</p>
+      <FormInput title="Password" text="Enter your password" type="password" @Input="updatePassword"
+        :error="passwordError" :value="details.password" />
+      <p v-if="error" class="text-[#FF3B3B] pb-2 flex flex-row items-center"><span class="mr-1">
+          <ErrorIcon />
+        </span>{{ error }}</p>
       <FormCheckbox />
-      <FormButton />
+      <FormButton text="Sign in" />
     </form>
   </div>
 </template>
