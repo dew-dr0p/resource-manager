@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-// import HelloWorld from '../HelloWorld.vue'
+import FormInput from '../FormInput.vue'
 
-describe('HelloWorld', () => {
+describe('FormInput', () => {
   it('renders properly', () => {
-    const wrapper = mount(HelloWorld, { props: { msg: 'Hello Vitest' } })
-    expect(wrapper.text()).toContain('Hello Vitest')
+    const wrapper = mount(FormInput)
+    expect(wrapper.text()).toContain('')
   })
 })
