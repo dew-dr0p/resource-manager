@@ -38,7 +38,7 @@ function updatePassword(n: string,) {
   details.password = n
 }
 
-async function submit() {
+function submit() {
   v$.value.$validate()
   if (v$.value.email.$error) {
     emailError = v$.value.email.$errors[0].$message
@@ -47,22 +47,22 @@ async function submit() {
     passwordError = v$.value.password.$errors[0].$message
   }
   console.log(v$.value)
-  try {
-    const { data } = await axios.post(
+  axios.post(
       'https://hci-proj.onrender.com/api/v1/login/',
       {
         'email': details.email,
         'password': details.password,
       }
     )
-    return data
-  } catch (err: any) {
+    .catch ((err: any) => {
     console.log(err.response)
     error.value = err.response.data
-  } finally {
-    details.email = '',
+    })
+    .then((res) => {
+      console.log(res)
+      details.email = '',
       details.password = ''
-  }
+    })
 
 }
 
@@ -78,7 +78,8 @@ async function submit() {
         :error="passwordError" :value="details.password" />
       <p v-if="error" class="text-[#FF3B3B] pb-2 flex flex-row items-center"><span class="mr-1">
           <ErrorIcon />
-        </span>{{ error }}</p>
+        </span>{{ error }}
+      </p>
       <FormCheckbox />
       <FormButton text="Sign in" />
     </form>
