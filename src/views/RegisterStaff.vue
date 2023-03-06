@@ -2,6 +2,7 @@
 import PageTitle from '@/components/PageTitle.vue';
 import FormButton from '@/components/FormButton.vue';
 import FormInput from '@/components/FormInput.vue';
+import NavBar from '@/components/NavBar.vue'
 import ErrorIcon from '@/components/icons/ErrorIcon.vue';
 import axios from 'axios'
 import type { Ref } from 'vue';
@@ -101,62 +102,37 @@ async function submit() {
         error.value = err.response.data
     } finally {
         details.name.firstName = '',
-        details.name.surname = '',
-        details.email = '',
-        details.password = '',
-        details.confirmPassword = ''
+            details.name.surname = '',
+            details.email = '',
+            details.password = '',
+            details.confirmPassword = ''
     }
 
 }
 </script>
 
 <template>
-    <div class="text-[#667085]">
+    <header>
+        <Nav class="mx-10 my-5 font-bold justify-center flex">
+            <NavBar />
+        </Nav>
+    </header>
+
+    <div class="text-[#667085] view">
         <PageTitle title="Create a Staff Account" subtitle="Please enter your details" />
         <form action="" @submit.prevent="submit()">
             <div class="flex flex-row">
-                <FormInput 
-                    type="text" 
-                    title="First Name" 
-                    text="Firstname" 
-                    class="mr-3" 
-                    :error="firstNameError" 
-                    :value="details.name.firstName"
-                    @Input="updateFirstName"    
-                />
-                <FormInput 
-                    type="text" 
-                    text="Surname" 
-                    title="Surname" 
-                    :error="surnameError" 
-                    :value="details.name.surname" 
-                    @Input="updateSurname"    
-                />
+                <FormInput type="text" title="First Name" text="Firstname" class="mr-3" :error="firstNameError"
+                    :value="details.name.firstName" @Input="updateFirstName" />
+                <FormInput type="text" text="Surname" title="Surname" :error="surnameError" :value="details.name.surname"
+                    @Input="updateSurname" />
             </div>
-            <FormInput 
-                title="Email" 
-                type="email" 
-                text="Enter your email" 
-                :error="emailError" 
-                :value="details.email" 
-                @Input="updateEmail" 
-            />
-            <FormInput 
-                title="Password" 
-                type="password" 
-                text="Create a password" 
-                :error="passwordError" 
-                :value="details.password" 
-                @Input="updatePassword" 
-            />
-            <FormInput 
-                title="Confirm Password" 
-                type="password" 
-                text="Retype your password" 
-                :error="confirmPasswordError" 
-                :value="details.confirmPassword" 
-                @Input="updateConfirmPassword" 
-            />
+            <FormInput title="Email" type="email" text="Enter your email" :error="emailError" :value="details.email"
+                @Input="updateEmail" />
+            <FormInput title="Password" type="password" text="Create a password" :error="passwordError"
+                :value="details.password" @Input="updatePassword" />
+            <FormInput title="Confirm Password" type="password" text="Retype your password" :error="confirmPasswordError"
+                :value="details.confirmPassword" @Input="updateConfirmPassword" />
             <p v-if="error" class="text-[#FF3B3B] pb-2 flex flex-row items-center">
                 <span class="mr-1">
                     <ErrorIcon />

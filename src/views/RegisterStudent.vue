@@ -2,6 +2,7 @@
 import FormButton from '@/components/FormButton.vue';
 import FormInput from '@/components/FormInput.vue';
 import PageTitle from '@/components/PageTitle.vue';
+import NavBar from '@/components/NavBar.vue'
 import ErrorIcon from '@/components/icons/ErrorIcon.vue';
 import axios from 'axios'
 import type { Ref } from 'vue';
@@ -99,7 +100,13 @@ async function submit() {
 </script>
 
 <template>
-    <div class="text-[#667085]">
+    <header>
+    <Nav class="mx-10 my-5 font-bold justify-center flex">
+      <NavBar />
+    </Nav>
+  </header>
+
+    <div class="text-[#667085] view">
         <PageTitle title="Register Student" subtitle="Please enter Student details" />
         <form action="" @submit.prevent="submit()">
             <div class="flex flex-row">

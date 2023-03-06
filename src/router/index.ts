@@ -2,6 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RegisterStaff from '@/views/RegisterStaff.vue'
 import RegisterStudent from '@/views/RegisterStudent.vue'
+import RecordsUpdate from '@/views/accounts/RecordsUpdate.vue'
+import Accounts from '@/views/StaffAccounts.vue'
+import ResourceCollection from '@/views/accounts/ResourceCollection.vue'
+import ReturnResource from '@/views/accounts/ReturnResource.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,11 +25,28 @@ const router = createRouter({
       name: 'register student',
       component: RegisterStudent
     },
-    // {
-    //   path: '/accounts/:user/',
-    //   name: 'register student',
-    //   component: RegisterStudent
-    // },
+    {
+      path: '/accounts/:user',
+      name: 'update records',
+      component: Accounts,
+      children: [
+        {
+          path: 'records_update',
+          name: 'records update',
+          component: RecordsUpdate,
+        },
+        {
+          path: 'resource_collection',
+          name: 'resource collection',
+          component: ResourceCollection,
+        },
+        {
+          path: 'return_resource',
+          name: 'return resource',
+          component: ReturnResource,
+        }
+      ]
+    },
     // {
     //   path: '/about',
     //   name: 'about',
