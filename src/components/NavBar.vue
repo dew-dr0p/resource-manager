@@ -5,8 +5,9 @@
 </template>
 
 <style scoped>
-.router-link-active, .router-link-exact-active {
-  padding-bottom: .5rem;
-  border-bottom: .25rem solid #A69D64;
+.router-link-active,
+.router-link-exact-active {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.25rem solid #a69d64;
 }
 </style>

@@ -33,20 +33,20 @@ const router = createRouter({
         {
           path: 'records_update',
           name: 'records update',
-          component: RecordsUpdate,
+          component: RecordsUpdate
         },
         {
           path: 'resource_collection',
           name: 'resource collection',
-          component: ResourceCollection,
+          component: ResourceCollection
         },
         {
           path: 'return_resource',
           name: 'return resource',
-          component: ReturnResource,
+          component: ReturnResource
         }
       ]
-    },
+    }
     // {
     //   path: '/about',
     //   name: 'about',

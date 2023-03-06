@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FooterBar from '@/components/FooterBar.vue';
+import FooterBar from '@/components/FooterBar.vue'
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 {
+  "lib": ["esnext", "es2018"],
   "files": [],
   "references": [
     {
