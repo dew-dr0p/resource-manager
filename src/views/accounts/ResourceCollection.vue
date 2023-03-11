@@ -102,7 +102,7 @@ function submit() {
         @update="updateId"
         class="mb-5"
       />
-      <button class="text-[#B7BBC1]"><span class="mr-3 mb-40">+</span> Add Resource</button>
+      <button class="text-[#B7BBC1] mb-20"><span class="mr-3">+</span> Add Resource</button>
       <p v-if="error" class="flex flex-row items-center pb-2 text-[#FF3B3B]">
         <span class="mr-1">
           <ErrorIcon /> 
